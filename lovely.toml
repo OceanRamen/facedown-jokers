@@ -11,3 +11,35 @@ position = "before"
 payload = 'G.debug_tooltip_toggle = true'
 match_indent = true
 overwrite = false
+
+# sacreligeous implimentation -- "quick and dirty" for sure
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "self.facing = 'front'"
+position = "at"
+payload = "self.facing = 'back'"
+match_indent = true
+overwrite = true
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "self.sprite_facing = 'front'"
+position = "at"
+payload = "self.sprite_facing = 'back'"
+match_indent = true
+overwrite = true
+
+# let's not mention this ever again.
+[[patches]]
+[patches.pattern]
+target = "cardarea.lua"
+pattern = "local stay_flipped = G.GAME and G.GAME.blind and G.GAME.blind:stay_flipped(self, card)"
+position = "before"
+payload = """
+card.facing = 'front'
+card.sprite_facing = 'front'
+"""
+match_indent = true
+overwrite = false
