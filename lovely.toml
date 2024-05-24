@@ -1,0 +1,13 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "main.lua"
+pattern = "return function()"
+position = "before"
+payload = 'G.debug_tooltip_toggle = true'
+match_indent = true
+overwrite = false
